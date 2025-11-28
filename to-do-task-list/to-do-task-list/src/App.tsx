@@ -1,9 +1,10 @@
 // App.tsx
 import { useState } from "react";
 import { Header } from "./components/header";
+import { TaskList } from "./components/taskList";
 
 // Estrutura de dados da tarefa
-type Task = {
+export type Task = {
   id: string;
   name: string;
   completed: boolean;
@@ -23,6 +24,8 @@ export function App() {
 
     setTasks([...tasks, newTask])
   }
+
+  
   
   // Visualize que as Tasks Estão Sendo Adicionadas
   console.log(tasks)
@@ -31,6 +34,7 @@ export function App() {
     <div className="bg-gray-100 h-screen">
       {/* Passando função "addTask" como prop para o Header */}
       <Header addTask={addTask} />
+      <TaskList tasks={tasks}/>
     </div>
   )
 }
