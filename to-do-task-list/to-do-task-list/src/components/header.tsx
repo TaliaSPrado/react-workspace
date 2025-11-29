@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Button } from "./button";
 
-type HeadrerProps ={
+type HeaderProps ={
   addTask: (taskName: string) => void
 }
 
-export const Header = ({ addTask }: HeadrerProps ) => {
+export const Header = ({ addTask }: HeaderProps ) => {
 
   const [taskName, setTaskName] = useState("");
   // console.log(taskName);

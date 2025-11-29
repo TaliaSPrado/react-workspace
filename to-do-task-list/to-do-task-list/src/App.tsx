@@ -25,7 +25,29 @@ export function App() {
     setTasks([...tasks, newTask])
   }
 
-  
+  // Função para excluir a task, recebe o ID da task que vai excluir
+  const deleteTask = (taskId: string) => {
+    const taskToDelete = tasks.find((task) => task.id == taskId)
+
+  if (!taskToDelete) {
+    return
+  }
+
+  const otherTasks = tasks.filter((task) => task.id != taskId)
+  setTasks(otherTasks)
+  }
+
+  const updateTask = (taskId: string) => {
+    const taskToUpdate = tasks.find((task) => task.id == taskId)
+
+    if (!taskToUpdate){
+      return
+    }
+
+    taskToUpdate.completed = !taskToUpdate.completed
+    const otherTasks = tasks.filter((task) => task.id != taskId)
+    setTasks([...otherTasks, taskToUpdate])
+  }
   
   // Visualize que as Tasks Estão Sendo Adicionadas
   console.log(tasks)
@@ -34,7 +56,11 @@ export function App() {
     <div className="bg-gray-100 h-screen">
       {/* Passando função "addTask" como prop para o Header */}
       <Header addTask={addTask} />
-      <TaskList tasks={tasks}/>
+      <TaskList 
+        tasks={tasks}
+        deleteTask={deleteTask}
+        updateTask={updateTask}
+      />
     </div>
   )
 }
